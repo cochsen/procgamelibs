@@ -1,4 +1,3 @@
-PGraphics layer1, layer2;
 PImage myBackground1, myBackground2;
 float x1, x2, speed1, speed2;
 
@@ -8,9 +7,6 @@ void setup() {
   myBackground2 = loadImage("mybackground3.png");
   x1 = x2 = 0.0;
   speed1 = -1.0; speed2 = -3.0;
-  
-  layer1 = createGraphics(width, height);
-  layer2 = createGraphics(width, height);
 }
 
 void draw() {
