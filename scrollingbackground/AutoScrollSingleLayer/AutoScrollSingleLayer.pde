@@ -17,8 +17,8 @@ float backgroundScroll(PImage img, float x, float _speed, int _width) {
   } else {
     x += _speed;  
   }
-  image(bkgrd, x, 0);
-  image(bkgrd, x + width, 0);  
+  image(img, x, 0);
+  image(img, x + width, 0);  
   
   return x;
 }
