@@ -1,5 +1,5 @@
 PImage bkgrd;
-float backgroundX, backgroundSpeed;
+float backgroundX, backgroundSpeed;  // location, speed
 float actorX, actorY, actorSpeed;
 
 void setup() {
@@ -24,7 +24,6 @@ void keyPressed() {
     if (actorX > width / 4.0) {
       moveActor(-1);    
     } else {
-      // move background - just update backgroundX
       backgroundX = moveBackground(-1, backgroundX, backgroundSpeed);
     }
   }
@@ -32,7 +31,6 @@ void keyPressed() {
     if (actorX < 3.0 * width / 4.0) {
       moveActor(1);
     } else {
-      // move background - just update backgroundX
       backgroundX = moveBackground(1, backgroundX, backgroundSpeed);
     }    
   }
@@ -72,17 +70,3 @@ void drawBackground(PImage img, float _x) {
   image(img, _x + width, 0);  
   image(img, _x - width, 0);
 }
-
-/*
-
-float backgroundScroll(PImage img, float x, float _speed, int _width) {
-  if (x <= -width) {
-    x = 0;
-  } else {
-    x += _speed;  
-  }
-
-  
-  return x;
-}
-*/
