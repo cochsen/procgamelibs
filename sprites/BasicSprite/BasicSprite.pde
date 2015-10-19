@@ -5,13 +5,13 @@ int dir;
 float xpos, ypos;
 
 void setup() {
-  size(640, 180);
+  size(640, 320);
   frameRate(24);
   left01 = loadImage("runleft00.png");
   right01 = loadImage("runright00.png");
   animation1 = new Animation("runleft", 3);
   animation2 = new Animation("runright", 3);
-  ypos = height * 0.8;
+  ypos = height * 0.6;
 }
 
 void draw() {
@@ -19,15 +19,15 @@ void draw() {
   if (keyPressed) {
     if (key == 'a') {
       if (xpos > 0) {
-        xpos -= 5.0;
+        xpos -= 15.0;
         dir = -1;
         animation1.display(xpos, ypos);
       }
     }
     if (key == 'd') {
-      if (xpos < width) {
+      if (xpos < width - right01.width) {
         dir = 1;
-        xpos += 5.0;
+        xpos += 15.0;
         animation2.display(xpos, ypos);
       }
     }    
