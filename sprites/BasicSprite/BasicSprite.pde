@@ -7,8 +7,8 @@ float xpos, ypos;
 void setup() {
   size(640, 320);
   frameRate(24);
-  left01 = loadImage("runleft00.png");
-  right01 = loadImage("runright00.png");
+  left01 = loadImage("standleft.png");
+  right01 = loadImage("standright.png");
   animation1 = new Animation("runleft", 3);
   animation2 = new Animation("runright", 3);
   ypos = height * 0.6;
