@@ -16,28 +16,26 @@ void setup() {
 
 void draw() {
   background(200);
-  if (!keyPressed) {
+  if (keyPressed) {
+    if (key == 'a') {
+      if (xpos > 0) {
+        xpos -= 5.0;
+        dir = -1;
+        animation1.display(xpos, ypos);
+      }
+    }
+    if (key == 'd') {
+      if (xpos < width) {
+        dir = 1;
+        xpos += 5.0;
+        animation2.display(xpos, ypos);
+      }
+    }    
+  } else {
     if (dir == -1) {
       image(left01, xpos, ypos);  
     } else {
       image(right01, xpos, ypos);  
-    }
-  }
-}
-
-void keyPressed() {
-  if (key == 'a') {
-    if (xpos > 0) {
-      xpos -= 5.0;
-      dir = -1;
-      animation1.display(xpos, ypos);
-    }
-  }
-  if (key == 'd') {
-    if (xpos < width) {
-      dir = 1;
-      xpos += 5.0;
-      animation2.display(xpos, ypos);
     }
   }
 }
