@@ -2,6 +2,7 @@ boolean jump;
 float speed, gravity, 
   momentum, momentumMin, momentumMax,
   playerWidth, playerHeight;
+boolean[] keysLR;
 Player player;
 
 void setup()
@@ -12,16 +13,18 @@ void setup()
   speed = 1;
   gravity = 1;
   momentumMin = 0;
-  momentumMax = 20;
+  momentumMax = 30;
   momentum = momentumMin;
   playerWidth = playerHeight = 40;
+  keysLR = new boolean[2];  // mapping: [LEFT, RIGHT]
+  for(int i=0; i<keysLR.length; i++) keysLR[i] = false;  
   player = new Player(width/2, height/2, playerWidth, playerHeight);
 }
 
 void draw()
 {
   background(200);
-  player.update(jump);
+  player.update(keysLR, jump);
   player.display();
 }
 
@@ -29,22 +32,22 @@ void keyPressed()
 {
   if(keyCode == UP)
   {
-    momentum = momentumMax;
-    jump = true;
-  }
-  if(keyCode == LEFT)
-  {
-    if(player.xpos>0+playerWidth/2)
+    if(player.ypos >= height-player.h)
     {
-      player.xpos -= 5;  
+      momentum = momentumMax;
+      jump = true;      
     }
   }
-  if(keyCode == RIGHT)
-  {
-    if(player.ypos<width-playerWidth/2)
-    {
-      player.xpos += 5;  
-    }
-  }
-  
+  if(keyCode == LEFT) 
+    if(keysLR[1] == false)
+      keysLR[0] = true;
+  if(keyCode == RIGHT) 
+    if(keysLR[0] == false)
+      keysLR[1] = true;
+}
+
+void keyReleased()
+{
+  if(keyCode == LEFT) keysLR[0] = false; 
+  if(keyCode == RIGHT) keysLR[1] = false;
 }
