@@ -49,7 +49,7 @@ void draw()
 
 void explode()
 {
-  if(counter<100)
+  if(counter<60)
   {
     for(int i=0; i<columns; i++)
     {
@@ -59,7 +59,7 @@ void explode()
         float y = j*cellSize+cellSize/2;
         float loc = x+y*img.width;
         color c = img.pixels[int(loc)];
-        particleSizes[i][j] = particleSizes[i][j] + particleScaling[i][j];
+        particleSizes[i][j] = particleSizes[i][j] + 0.5*particleScaling[i][j];
         pushMatrix();
         translate(x+xdir[i][j], y+ydir[i][j]);
         fill(c, 204);
@@ -67,10 +67,8 @@ void explode()
         rectMode(CENTER);
         rect(width/2-img.width/2, height/2-img.height/2, particleSizes[i][j], particleSizes[i][j]);
         popMatrix();
-        if(xdir[i][j] > 0) xdir[i][j] = xdir[i][j] + 1;
-        if(xdir[i][j] < 0) xdir[i][j] = xdir[i][j] - 1;
-        if(ydir[i][j] > 0) ydir[i][j] = ydir[i][j] + 1;
-        if(ydir[i][j] < 0) ydir[i][j] = ydir[i][j] - 1;        
+        xdir[i][j] = xdir[i][j] + 0.1*xdir[i][j];
+        ydir[i][j] = ydir[i][j] + 0.1*ydir[i][j];        
       }
     }
     counter++;
