@@ -49,7 +49,7 @@ void draw()
 
 void explode()
 {
-  if(counter<60)
+  if(counter<frameRate/2)
   {
     for(int i=0; i<columns; i++)
     {
@@ -59,7 +59,10 @@ void explode()
         float y = j*cellSize+cellSize/2;
         float loc = x+y*img.width;
         color c = img.pixels[int(loc)];
-        particleSizes[i][j] = particleSizes[i][j] + 0.5*particleScaling[i][j];
+        if(counter<frameRate/4)
+          particleSizes[i][j] = particleSizes[i][j] + 0.5*particleScaling[i][j];
+        else
+          particleSizes[i][j] = particleSizes[i][j] - 0.5*particleScaling[i][j];
         pushMatrix();
         translate(x+xdir[i][j], y+ydir[i][j]);
         fill(c, 204);
