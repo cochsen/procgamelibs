@@ -1,6 +1,6 @@
 PFont menufont;
 int screensize; // 0 - fullscreen, 1 - 600x400, 2 - 640x480, 3 - 800x600
-int[] screenSizes = {0, 1, 2, 3};
+int[] screenSizes = {0, 1, 2, 3, 4};
 float w, h, textOffSet;
 
 void setup()
@@ -10,10 +10,14 @@ void setup()
   screensize = 1;
   resetFonts();
   background(0);
+  w = width;
+  h = height;
 }
 
 void draw()
 {
+  if(w != width || h != height)
+    resetFonts();
   background(0);
   textAlign(CENTER);
   stroke(255);
@@ -26,7 +30,7 @@ void draw()
   setTextColor(2);
   text("800 x 600", width/2, height*6/16);
   setTextColor(3);
-  text("Back", width/2, height*8/16);
+  text("Back", width/2, height*9/16);
 }
 
 void keyPressed()
@@ -62,7 +66,7 @@ void setRes()
     case 2:
       surface.setSize(800,600);
       resetFonts();
-      break;           
+      break;      
     case 3:
       exit();
   }
