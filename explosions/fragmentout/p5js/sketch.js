@@ -10,28 +10,7 @@ var xdir, ydir, particleSizes, particleScaling;
 
 function setup() {
   createCanvas(400, 400);
-  exploding = false;
-  counter = 0;
-  cellSize = 4;
-  columns = img.width / cellSize;
-  rows = img.height / cellSize;
-  xdir = [];
-  ydir = [];
-  particleSizes = [];
-  particleScaling = [];
-  for(var i=0; i<columns; i++) {
-    xdir[i] = [];
-    ydir[i] = [];
-    particleSizes[i] = [];
-    particleScaling[i] = [];
-    for(var j=0; j<rows; j++) {
-      xdir[i][j] = (Math.random() < 0.5 ? -1 : 1)*(Math.random())*20;
-      ydir[i][j] = (Math.random() < 0.5 ? -1 : 1)*(Math.random())*20;
-      particleSizes[i][j] = cellSize;
-      particleScaling[i][j] = Math.random();
-      console.log("xdir: " + xdir[i][j] + ", ydir: " + ydir[i][j] + ", particleSize: " + particleSizes[i][j]);  
-    }
-  }
+  setupEnv();
 }
 
 function draw() {
@@ -46,7 +25,7 @@ function draw() {
 }
 
 function explode() {
-  if(counter < frameCount) {
+  if(counter < frameRate()) {
     for(var i=0; i<columns; i++) {
       for(var j=0; j<rows; j++) {
         var x = i*cellSize+cellSize/2;
@@ -73,20 +52,35 @@ function explode() {
     counter++;
   }
   else {
-    exploding = false;
-    counter = 0;
-    cellSize = 4;
-    for(var i=0; i<columns; i++) {
-      for(var j=0; j<rows; j++) {
-        xdir[i][j] = (Math.random() < 0.5 ? -1 : 1)*(Math.random())*20;
-        ydir[i][j] = (Math.random() < 0.5 ? -1 : 1)*(Math.random())*20;
-        particleSizes[i][j] = cellSize;
-        particleScaling[i][j] = Math.random();
-      }
-    }
+    setupEnv();
   }
 }
 
 function mousePressed() {
   exploding = true;
+}
+
+function setupEnv() {
+  exploding = false;
+  counter = 0;
+  cellSize = 4;
+  columns = img.width / cellSize;
+  rows = img.height / cellSize;
+  xdir = [];
+  ydir = [];
+  particleSizes = [];
+  particleScaling = [];
+  for(var i=0; i<columns; i++) {
+    xdir[i] = [];
+    ydir[i] = [];
+    particleSizes[i] = [];
+    particleScaling[i] = [];
+    for(var j=0; j<rows; j++) {
+      xdir[i][j] = (Math.random() < 0.5 ? -1 : 1)*(Math.random())*20;
+      ydir[i][j] = (Math.random() < 0.5 ? -1 : 1)*(Math.random())*20;
+      particleSizes[i][j] = cellSize;
+      particleScaling[i][j] = Math.random();
+      console.log("xdir: " + xdir[i][j] + ", ydir: " + ydir[i][j] + ", particleSize: " + particleSizes[i][j]);  
+    }
+  }  
 }
