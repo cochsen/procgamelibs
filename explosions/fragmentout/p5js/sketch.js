@@ -34,10 +34,10 @@ function explode() {
         var d = pixelDensity();
         img.loadPixels();
         var c = img.get(i,j);
-        if(counter<frameRate/4)
-          particleSizes[i][j] = particleSizes[i][j] + 0.5*particleScaling[i][i];
+        if(counter<frameRate()/4)
+          particleSizes[i][j] = particleSizes[i][j] + 2*particleScaling[i][i];
         else
-          particleSizes[i][j] = particleSizes[i][j] - 0.5*particleScaling[i][i];
+          particleSizes[i][j] = particleSizes[i][j] - 2*particleScaling[i][i];
         push();
         translate(x+xdir[i][j], y+ydir[i][j]);
         fill(c, 204);
